@@ -8,11 +8,10 @@ import Typography from "@material-ui/core/Typography";
 
 const useStyles = makeStyles((theme) => ({
   card: {
-    width: "300px",
+    maxWidth: "60vh",
     margin: "auto",
   },
   media: {
-    height: "100%",
     width: "100%",
   },
 }));
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Pin({ pinInfo }) {
   const classes = useStyles();
   return (
-    <Card className={classes.card}>
+    <Card variant="outlined" className={classes.card}>
       <CardContent>
         <CardMedia
           component="img"
