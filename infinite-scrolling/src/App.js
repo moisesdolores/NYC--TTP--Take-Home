@@ -6,11 +6,16 @@ import Pin from "./Components/Pin";
 import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import Navbar from "./Components/Navbar";
-
+import CircularProgress from "@material-ui/core/CircularProgress";
 const useStyles = makeStyles((theme) => ({
   mainGrid: {
     overflowY: " hidden",
     marginTop: 115,
+  },
+  loader: {
+    marginTop: 300,
+
+    width: "100%",
   },
 }));
 
@@ -28,7 +33,9 @@ function App() {
       setLoading(true);
       const response = await axios.get("nyc_ttp_pins.json");
       setTotalPins(response.data);
-      setLoading(false);
+      setTimeout(() => {
+        setLoading(false);
+      }, 2000);
     };
     fetchPins();
   }, []);
@@ -50,17 +57,30 @@ function App() {
       hasMore={true}
     >
       <Navbar />
-      <div className={classes.mainGrid}>
-        <Grid container spacing={2}>
-          {pins.map((pin, index) => {
-            return (
-              <Grid item xs={12}>
-                <Pin key={index} pinInfo={pin} />
-              </Grid>
-            );
-          })}
+      {loading ? (
+        <Grid
+          className={classes.loader}
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          alignContent="center"
+        >
+          <CircularProgress color="secondary" />
         </Grid>
-      </div>
+      ) : (
+        <div className={classes.mainGrid}>
+          <Grid container spacing={2}>
+            {pins.map((pin, index) => {
+              return (
+                <Grid item key={index} xs={12}>
+                  <Pin key={index} pinInfo={pin} />
+                </Grid>
+              );
+            })}
+          </Grid>
+        </div>
+      )}
     </InfiniteScroll>
   );
 }
