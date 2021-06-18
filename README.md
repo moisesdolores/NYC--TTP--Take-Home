@@ -1,4 +1,7 @@
 # NYC--TTP--Take-Home
+https://pinterest-infinite-scrolling.netlify.app/
+![image](https://user-images.githubusercontent.com/62561953/122490105-2dd39700-cfaf-11eb-8027-a3120369570c.png)
+
 ### 1. Infinite-Scroll Challenge
 
 ## Description
